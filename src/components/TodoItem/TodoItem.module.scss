@@ -1,0 +1,18 @@
+@import "../../sass/mixins.scss";
+
+.todo_item_container {
+  @include flex(flex, row, center, flex-start);
+  width: 100%;
+  min-height: 50px;
+  color: black;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: aquamarine;
+//   transition: 0.2s ease-in-out;
+//   &:active {
+//     transform: scale(1.2);
+//     box-shadow: 5px 5px 20px rgba(63, 140, 255, 0.5);
+//     background-color: white;
+//     border-left: 5px solid #6ec9fd;
+//   }
+}
