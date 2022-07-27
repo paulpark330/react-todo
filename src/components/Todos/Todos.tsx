@@ -1,55 +1,32 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import TodoItem from "../TodoItem/TodoItem";
 import styles from "./Todos.module.scss";
 
-import Todo from "../../models/todo";
-
-const DUMMY_TODOS: Todo[] = [
-  {
-    id: "t1",
-    title: "Gym",
-    description: "Chest and shoulders",
-  },
-  {
-    id: "t2",
-    title: "Study",
-    description: "React Todo App",
-  },
-  {
-    id: "t3",
-    title: "Work",
-    description: "Darwins from 10AM to 6PM",
-  },
-  {
-    id: "t4",
-    title: "Dinner",
-    description: "Chicken breast and salad",
-  },
-  {
-    id: "t5",
-    title: "Study",
-    description: "Learn NextJS",
-  },
-];
+import NewTodo from "../NewTodo/NewTodo";
+import { useAppSelector } from "../../hooks/hooks";
 
 const Todos: React.FC = () => {
-  const [TodoList, setTodoList] = useState<Todo[]>([]);
+  const [openForm, setOpenForm] = useState(false);
 
-  useEffect(() => {
-    setTodoList(DUMMY_TODOS);
-  }, []);
+  const todos = useAppSelector((state) => state.todos);
+
+  const toggleForm = () => {
+    setOpenForm((prevState) => !prevState);
+  };
 
   return (
     <div className={styles.todos_container}>
-      <div className={styles.todos_header}>TODOS</div>
+      <div className={styles.todos_header}>
+        <h1>Your Todos</h1>
+        <button className={styles.todos_button} onClick={toggleForm}>+</button>
+      </div>
+      {openForm && <NewTodo handleOnSubmit={toggleForm} />}
       <div className={styles.todos_main}>
-        {TodoList.map((item) => (
+        {todos.items.map((item) => (
           <TodoItem
             key={item.id}
-            id={item.id}
-            title={item.title}
-            description={item.description}
+            todo={item}
           />
         ))}
       </div>

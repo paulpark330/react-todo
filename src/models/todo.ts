@@ -1,13 +1,13 @@
 class Todo {
-    id: string;
-    title: string;
-    description: string;
+  id: string;
+  content: string;
+  completed: boolean;
 
-    constructor(todoTitle: string, todoDescription: string, todoId: string) {
-        this.id = todoId;
-        this.title = todoTitle;
-        this.description = todoDescription;
-    }
+  constructor(todoContent: string, todoId: string) {
+    this.id = todoId;
+    this.content = todoContent;
+    this.completed = false;
+  }
 }
 
 export default Todo;

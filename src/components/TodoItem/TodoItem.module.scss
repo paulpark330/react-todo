@@ -1,18 +1,45 @@
 @import "../../sass/mixins.scss";
 
 .todo_item_container {
-  @include flex(flex, row, center, flex-start);
+  @include flex(flex, row, center, space-between);
   width: 100%;
   min-height: 50px;
   color: black;
-  border-radius: 5px;
-  padding: 5px;
-  background-color: aquamarine;
-//   transition: 0.2s ease-in-out;
-//   &:active {
-//     transform: scale(1.2);
-//     box-shadow: 5px 5px 20px rgba(63, 140, 255, 0.5);
-//     background-color: white;
-//     border-left: 5px solid #6ec9fd;
-//   }
+  padding: 15px;
+  background-color: #fafafa;
+  transition: 0.2s ease-in-out;
+  border-bottom: 2px solid #e6e6e6;
+  &.complete {
+    background-color: #c2fad2;
+  }
+}
+
+.todo_item_content {
+  transition: 0.2s ease-in-out;
+  color: black;
+  user-select: none;
+  &.complete {
+    color: #4dd272;
+    text-decoration: line-through;
+  }
+}
+
+.todo_item_actions {
+  @include flex(flex, row, center, center);
+  gap: 10px;
+}
+
+.todo_item_icon {
+  @include flex(flex, row, center, center);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #f1f1f1;
+  cursor: pointer;
+  &.complete {
+    background-color: #4dd272;
+  };
+  &.delete {
+    background-color: #ffdcdc;
+  };
 }
