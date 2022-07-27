@@ -7,15 +7,13 @@ import NewTodo from "../NewTodo/NewTodo";
 import { useAppSelector } from "../../hooks/hooks";
 
 const Todos: React.FC = () => {
-
   const todos = useAppSelector((state) => state.todos);
-
 
   let todoList;
 
   if (!todos.items || todos.items.length === 0) {
     todoList = (
-      <div className={styles.todos_empty} >
+      <div className={styles.todos_empty}>
         <p>No todo task yet</p>
       </div>
     );
@@ -26,16 +24,15 @@ const Todos: React.FC = () => {
   }
 
   return (
-    <div className={styles.todos_container}>
-      <div className={styles.todos_header}>
-        <h1>Your Todos</h1>
-        <button className={styles.todos_button} >
-          +
-        </button>
+    <>
+      <div className={styles.todos_container}>
+        <div className={styles.todos_header}>
+          <h1>Your Todos</h1>
+        </div>
+        <div className={styles.todos_main}>{todoList}</div>
       </div>
-      <div className={styles.todos_main}>{todoList}</div>
       <NewTodo />
-    </div>
+    </>
   );
 };
 
