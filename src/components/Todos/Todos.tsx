@@ -7,13 +7,9 @@ import NewTodo from "../NewTodo/NewTodo";
 import { useAppSelector } from "../../hooks/hooks";
 
 const Todos: React.FC = () => {
-  const [openForm, setOpenForm] = useState(false);
 
   const todos = useAppSelector((state) => state.todos);
 
-  const toggleForm = () => {
-    setOpenForm((prevState) => !prevState);
-  };
 
   let todoList;
 
@@ -33,12 +29,12 @@ const Todos: React.FC = () => {
     <div className={styles.todos_container}>
       <div className={styles.todos_header}>
         <h1>Your Todos</h1>
-        <button className={styles.todos_button} onClick={toggleForm}>
+        <button className={styles.todos_button} >
           +
         </button>
       </div>
       <div className={styles.todos_main}>{todoList}</div>
-      {openForm && <NewTodo handleOnSubmit={toggleForm} />}
+      <NewTodo />
     </div>
   );
 };

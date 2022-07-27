@@ -5,7 +5,7 @@ import { addTodo } from "../../store/todo-slice";
 
 import styles from "./NewTodo.module.scss";
 
-const NewTodo: React.FC<{ handleOnSubmit: any }> = (props) => {
+const NewTodo: React.FC<{ }> = (props) => {
   const inputContentRef = useRef<HTMLInputElement>(null);
   const id = useId();
   const dispatch = useAppDispatch();
@@ -22,12 +22,16 @@ const NewTodo: React.FC<{ handleOnSubmit: any }> = (props) => {
 
     const content = inputContentRef.current!.value;
 
-    dispatch(addTodo({ id, content, completed: false }));
+    dispatch(addTodo({ id: `${id}${uniqueID()}`, content, completed: false }));
 
     inputContentRef.current!.value = "";
+    inputContentRef.current?.focus()
 
-    props.handleOnSubmit();
   };
+
+  function uniqueID() {
+    return Math.floor(Math.random() * Date.now())
+    }
 
   return (
     <form className={styles.new_todo} onSubmit={handleSubmit}>
