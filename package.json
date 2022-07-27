@@ -11,6 +11,7 @@
     "@types/jest": "^27.5.2",
     "@types/node": "^16.11.45",
     "@types/react": "^18.0.15",
+    "@types/react-beautiful-dnd": "^13.1.2",
     "@types/react-dom": "^18.0.6",
     "ionicons": "^6.0.2",
     "react": "^18.2.0",

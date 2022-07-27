@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from "./hooks/hooks";
 import styles from "./App.module.scss";
 import Todos from "./components/Todos/Todos";
 import { fetchTodoData, sendTodoData } from "./store/todo-actions";
+import { DragDropContext } from "react-beautiful-dnd";
 
 const App = () => {
   const dispatch = useAppDispatch();
@@ -15,11 +16,17 @@ const App = () => {
 
   useEffect(() => {
     console.log("todos", todos);
-  }, [todos])
+  }, [todos]);
+
+  const onDragEnd = (result: any) => {
+
+  }
 
   return (
     <div className={styles.app}>
-      <Todos />
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Todos />
+      </DragDropContext>
     </div>
   );
 };
