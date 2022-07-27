@@ -1,13 +1,13 @@
+@import "../../sass/mixins.scss";
 .new_todo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 600px;
-  padding: 0;
+  @include flex(flex, row, center, center);
+  gap: 10px;
+  width: 90%;
+  max-width: 600px;
+  padding: 15px;
   margin-top: 15px;
   background-color: #fafafa;
-  border-radius: 4px;
+  border-radius: 5px;
   box-shadow: 0px 0px 10px rgba(63, 140, 255, 0.5);
 }
 .new_todo__input {
@@ -28,13 +28,13 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 .new_todo__button {
+  height: 40px;
   border: none;
   border-radius: 5px;
   background-color: #4d90fe;
   color: #fff;
-  font-size: 24px;
-  font-weight: bold;
-  padding: 10px;
+  font-size: 18px;
+  padding: 0 15px;
   outline: none;
   cursor: pointer;
 }
