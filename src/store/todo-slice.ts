@@ -4,36 +4,31 @@ import type { RootState } from "../store/index";
 
 export interface TodoState {
   items: Todo[];
-  totalItems: number;
 }
 
 const initialState: TodoState = {
   items: [],
-  totalItems: 0,
 };
 
 const todoSlice = createSlice({
   name: "todo",
   initialState,
   reducers: {
-    repalceTodo(state, action: PayloadAction<TodoState>) {
+    replaceTodo(state, action: PayloadAction<TodoState>) {
       state.items = action.payload.items;
-      state.totalItems = action.payload.totalItems;
     },
     addTodo(state, action: PayloadAction<Todo>) {
       const newTodo = action.payload;
-      console.log('newTodo', newTodo);
+      console.log("newTodo", newTodo);
       state.items.push({
         id: newTodo.id,
         content: newTodo.content,
         completed: newTodo.completed,
       });
-      state.totalItems++;
     },
     deleteTodo(state, action: PayloadAction<string>) {
       const id = action.payload;
-      state.items.filter((item) => item.id !== id);
-      state.totalItems--;
+      state.items = state.items.filter((item) => item.id !== id);
     },
     updateTodo(state, action: PayloadAction<Todo>) {
       const todo = action.payload;
@@ -43,7 +38,7 @@ const todoSlice = createSlice({
   },
 });
 
-export const { repalceTodo, addTodo, deleteTodo, updateTodo } =
+export const { replaceTodo, addTodo, deleteTodo, updateTodo } =
   todoSlice.actions;
 
 export const selectTodo = (state: RootState) => state.todos;

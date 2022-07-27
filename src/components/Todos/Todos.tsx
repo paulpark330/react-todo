@@ -15,21 +15,30 @@ const Todos: React.FC = () => {
     setOpenForm((prevState) => !prevState);
   };
 
+  let todoList;
+
+  if (!todos.items || todos.items.length === 0) {
+    todoList = (
+      <div className={styles.todos_empty} >
+        <p>No todo task yet</p>
+      </div>
+    );
+  } else {
+    todoList = todos.items.map((item) => (
+      <TodoItem key={item.id} todo={item} />
+    ));
+  }
+
   return (
     <div className={styles.todos_container}>
       <div className={styles.todos_header}>
         <h1>Your Todos</h1>
-        <button className={styles.todos_button} onClick={toggleForm}>+</button>
+        <button className={styles.todos_button} onClick={toggleForm}>
+          +
+        </button>
       </div>
+      <div className={styles.todos_main}>{todoList}</div>
       {openForm && <NewTodo handleOnSubmit={toggleForm} />}
-      <div className={styles.todos_main}>
-        {todos.items.map((item) => (
-          <TodoItem
-            key={item.id}
-            todo={item}
-          />
-        ))}
-      </div>
     </div>
   );
 };

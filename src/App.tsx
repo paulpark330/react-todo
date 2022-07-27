@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from "./hooks/hooks";
 import styles from "./App.module.scss";
 import Todos from "./components/Todos/Todos";
 import { fetchTodoData, sendTodoData } from "./store/todo-actions";
-import { DragDropContext } from "react-beautiful-dnd";
+// import { DragDropContext } from "react-beautiful-dnd";
 
 const App = () => {
   const dispatch = useAppDispatch();
@@ -15,18 +15,19 @@ const App = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    console.log("todos", todos);
-  }, [todos]);
+    console.log('updating localstorage', todos)
+    dispatch(sendTodoData(todos));
+  }, [todos, dispatch]);
 
-  const onDragEnd = (result: any) => {
+  // const onDragEnd = (result: any) => {
 
-  }
+  // }
 
   return (
     <div className={styles.app}>
-      <DragDropContext onDragEnd={onDragEnd}>
+      {/* <DragDropContext onDragEnd={onDragEnd}> */}
         <Todos />
-      </DragDropContext>
+      {/* </DragDropContext> */}
     </div>
   );
 };

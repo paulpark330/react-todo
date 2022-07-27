@@ -6,7 +6,7 @@
   background-color: white;
   width: 600px;
   height: 500px;
-  overflow-y: hidden;
+  // overflow-y: auto;
 }
 
 .todos_header {
@@ -39,10 +39,18 @@
 
 
 .todos_main {
-  @include flex(flex, column, center, flex-start);
+  // @include flex(flex, column, center, flex-start);
   overflow-y: scroll;
   width: 100%;
+  height: 450px;
   &::-webkit-scrollbar {
     display: none;
   }
+}
+
+
+.todos_empty {
+ @include flex(flex, row, center, center);
+ width: 100%;
+ height: 100%;
 }
