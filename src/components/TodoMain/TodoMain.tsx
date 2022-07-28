@@ -41,7 +41,6 @@ const TodoMain: React.FC = () => {
         setTodoList(completedList);
         break;
     }
-    console.log(todos.items)
   }, [alignment, todos.items]);
 
   if (!todoList || todoList.length === 0) {
