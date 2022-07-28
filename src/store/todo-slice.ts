@@ -4,17 +4,23 @@ import type { RootState } from "../store/index";
 
 export interface TodoState {
   items: Todo[];
+  addedTodo: boolean;
+}
+
+export interface TodoItems {
+  items: Todo[];
 }
 
 const initialState: TodoState = {
   items: [],
+  addedTodo: false
 };
 
 const todoSlice = createSlice({
   name: "todo",
   initialState,
   reducers: {
-    replaceTodo(state, action: PayloadAction<TodoState>) {
+    replaceTodo(state, action: PayloadAction<TodoItems>) {
       state.items = action.payload.items;
     },
     addTodo(state, action: PayloadAction<Todo>) {
@@ -24,6 +30,7 @@ const todoSlice = createSlice({
         content: newTodo.content,
         completed: newTodo.completed,
       });
+      state.addedTodo = !state.addedTodo;
     },
     deleteTodo(state, action: PayloadAction<string>) {
       const id = action.payload;
@@ -35,7 +42,8 @@ const todoSlice = createSlice({
       state.items[index] = todo;
     },
   },
-});
+},
+);
 
 export const { replaceTodo, addTodo, deleteTodo, updateTodo } =
   todoSlice.actions;

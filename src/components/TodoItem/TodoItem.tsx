@@ -1,6 +1,6 @@
 import { IonIcon } from "@ionic/react";
 import { checkmark, trashBinOutline } from "ionicons/icons";
-import { forwardRef, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useAppDispatch } from "../../hooks/hooks";
 import Todo from "../../models/todo";
 import { deleteTodo, updateTodo } from "../../store/todo-slice";
@@ -9,9 +9,8 @@ import styles from "./TodoItem.module.scss";
 interface Props {
   todo: Todo;
 }
-export type Ref = HTMLDivElement;
 
-const TodoItem = forwardRef<Ref, Props>((props, ref) => {
+const TodoItem: React.FC<Props> = (props) => {
   const { id, content, completed } = props.todo;
   const [isCompleted, setIsCompleted] = useState(completed);
   const dispatch = useAppDispatch();
@@ -31,7 +30,7 @@ const TodoItem = forwardRef<Ref, Props>((props, ref) => {
   const status = isCompleted ? styles.complete : styles.incomplete;
 
   return (
-    <div ref={ref} className={`${styles.todo_item_container} ${status}`}>
+    <div className={`${styles.todo_item_container} ${status}`}>
       <p className={`${styles.todo_item_content} ${status}`}>{content}</p>
       <div className={styles.todo_item_actions}>
         <div
@@ -49,6 +48,6 @@ const TodoItem = forwardRef<Ref, Props>((props, ref) => {
       </div>
     </div>
   );
-});
+};
 
 export default TodoItem;

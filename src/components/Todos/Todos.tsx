@@ -1,4 +1,4 @@
-import { createRef, useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 
 import TodoItem from "../TodoItem/TodoItem";
 import styles from "./Todos.module.scss";
@@ -9,10 +9,6 @@ import { useAppSelector } from "../../hooks/hooks";
 const Todos: React.FC = () => {
   const todos = useAppSelector((state) => state.todos);
   const bottomRef = useRef<HTMLDivElement>(null);
-  const refs = todos.items.reduce((acc: any, item) => {
-    acc[item.id] = createRef<HTMLDivElement>();
-    return acc;
-  }, {});
 
   let todoList;
 
@@ -24,7 +20,7 @@ const Todos: React.FC = () => {
     );
   } else {
     todoList = todos.items.map((item) => {
-      return <TodoItem ref={refs[item.id]} key={item.id} todo={item} />;
+      return <TodoItem key={item.id} todo={item} />;
     });
   }
 
@@ -36,7 +32,7 @@ const Todos: React.FC = () => {
 
   useEffect(() => {
     scrollToBottom();
-  }, [scrollToBottom]);
+  }, [scrollToBottom, todos.addedTodo]);
 
   return (
     <>
