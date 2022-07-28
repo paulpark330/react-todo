@@ -5,15 +5,18 @@ import type { RootState } from "../store/index";
 export interface TodoState {
   items: Todo[];
   addedTodo: boolean;
+  totalCompleted: number;
 }
 
 export interface TodoItems {
   items: Todo[];
+  totalCompleted: number;
 }
 
 const initialState: TodoState = {
   items: [],
-  addedTodo: false
+  addedTodo: false,
+  totalCompleted: 0,
 };
 
 const todoSlice = createSlice({
@@ -22,6 +25,7 @@ const todoSlice = createSlice({
   reducers: {
     replaceTodo(state, action: PayloadAction<TodoItems>) {
       state.items = action.payload.items;
+      state.totalCompleted = action.payload.totalCompleted;
     },
     addTodo(state, action: PayloadAction<Todo>) {
       const newTodo = action.payload;
@@ -35,18 +39,25 @@ const todoSlice = createSlice({
     deleteTodo(state, action: PayloadAction<string>) {
       const id = action.payload;
       state.items = state.items.filter((item) => item.id !== id);
+      state.totalCompleted = (state.items.filter((todo) => todo.completed === true)).length
+
     },
     updateTodo(state, action: PayloadAction<Todo>) {
       const todo = action.payload;
       const index = state.items.findIndex((item) => item.id === todo.id);
       state.items[index] = todo;
+      state.totalCompleted = (state.items.filter((todo) => todo.completed === true)).length
     },
-  },
-},
-);
 
-export const { replaceTodo, addTodo, deleteTodo, updateTodo } =
-  todoSlice.actions;
+  },
+});
+
+export const {
+  replaceTodo,
+  addTodo,
+  deleteTodo,
+  updateTodo,
+} = todoSlice.actions;
 
 export const selectTodo = (state: RootState) => state.todos;
 

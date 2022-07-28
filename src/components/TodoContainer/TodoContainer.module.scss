@@ -1,0 +1,9 @@
+@import "../../sass/mixins.scss";
+
+.todo_container {
+  @include flex(flex, column);
+  gap: 2px;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 600px;
+}

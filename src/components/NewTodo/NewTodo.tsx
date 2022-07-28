@@ -5,11 +5,7 @@ import { Button } from "@mui/material";
 
 import styles from "./NewTodo.module.scss";
 
-interface Prop {
-  onAddTodo(): void;
-}
-
-const NewTodo: React.FC<Prop> = ({onAddTodo}) => {
+const NewTodo: React.FC = () => {
   const inputContentRef = useRef<HTMLInputElement>(null);
   const id = useId();
   const dispatch = useAppDispatch();
@@ -18,6 +14,7 @@ const NewTodo: React.FC<Prop> = ({onAddTodo}) => {
     e.preventDefault();
 
     if (inputContentRef.current?.value.trim() === "") {
+      inputContentRef.current?.focus();
       return;
     }
 
@@ -26,9 +23,7 @@ const NewTodo: React.FC<Prop> = ({onAddTodo}) => {
     const UID = `${id}${uniqueID()}`;
 
     dispatch(addTodo({ id: UID, content, completed: false }));
-
-    onAddTodo();
-
+    
     inputContentRef.current!.value = "";
     inputContentRef.current?.focus();
   };

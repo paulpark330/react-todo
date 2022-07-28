@@ -13,6 +13,7 @@ interface Props {
 const TodoItem: React.FC<Props> = (props) => {
   const { id, content, completed } = props.todo;
   const [isCompleted, setIsCompleted] = useState(completed);
+
   const dispatch = useAppDispatch();
 
   const toggleCompleted = () => {
@@ -27,7 +28,7 @@ const TodoItem: React.FC<Props> = (props) => {
     dispatch(updateTodo({ id: id, content: content, completed: isCompleted }));
   }, [id, content, isCompleted, dispatch]);
 
-  const status = isCompleted ? styles.complete : styles.incomplete;
+  const status = isCompleted ? styles.complete : styles.in_progress;
 
   return (
     <div className={`${styles.todo_item_container} ${status}`}>

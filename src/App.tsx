@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from "./hooks/hooks";
 import logo from './assets/focus360.svg'
 
 import styles from "./App.module.scss";
-import Todos from "./components/Todos/Todos";
+import TodoContainer from "./components/TodoContainer/TodoContainer";
 import { fetchTodoData, sendTodoData } from "./store/todo-actions";
 // import { DragDropContext } from "react-beautiful-dnd";
 
@@ -27,7 +27,7 @@ const App = () => {
     <div className={styles.app}>
       {/* <DragDropContext onDragEnd={onDragEnd}> */}
       <img className={styles.logo} src={logo} alt="logo" />
-        <Todos />
+        <TodoContainer />
       {/* </DragDropContext> */}
     </div>
   );
