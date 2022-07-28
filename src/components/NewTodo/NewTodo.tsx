@@ -4,7 +4,11 @@ import { addTodo } from "../../store/todo-slice";
 
 import styles from "./NewTodo.module.scss";
 
-const NewTodo: React.FC = () => {
+interface Prop {
+  onAddTodo(): void;
+}
+
+const NewTodo: React.FC<Prop> = ({onAddTodo}) => {
   const inputContentRef = useRef<HTMLInputElement>(null);
   const id = useId();
   const dispatch = useAppDispatch();
@@ -21,6 +25,8 @@ const NewTodo: React.FC = () => {
     const UID = `${id}${uniqueID()}`;
 
     dispatch(addTodo({ id: UID, content, completed: false }));
+
+    onAddTodo();
 
     inputContentRef.current!.value = "";
     inputContentRef.current?.focus();
