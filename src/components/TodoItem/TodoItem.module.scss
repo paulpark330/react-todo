@@ -3,13 +3,14 @@
 .todo_item_container {
   @include flex(flex, row, center, space-between);
   width: 100%;
-  min-height: 50px;
   color: black;
   padding: 15px;
   font-size: 18px;
-  background-color: #fafafa;
+  background-color: white;
   transition: 0.2s ease-in-out;
-  border-bottom: 2px solid rgba(63, 140, 255, 0.5);
+  border-bottom: 1px solid rgba(63, 140, 255, 0.5);
+  border-top: 1px solid rgba(63, 140, 255, 0.5);
+  gap: 10px;
   &.complete {
     background-color: #d3ffdf;
   }
@@ -18,7 +19,6 @@
 .todo_item_content {
   transition: 0.2s ease-in-out;
   color: black;
-  user-select: none;
   text-align: start;
   max-width: 450px;
   line-height: 1.2;
@@ -42,8 +42,8 @@
   cursor: pointer;
   &.complete {
     background-color: #4dd272;
-  };
+  }
   &.delete {
     background-color: #ffdcdc;
-  };
+  }
 }

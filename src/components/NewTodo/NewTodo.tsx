@@ -1,6 +1,7 @@
 import { useRef, useId } from "react";
 import { useAppDispatch } from "../../hooks/hooks";
 import { addTodo } from "../../store/todo-slice";
+import { Button } from "@mui/material";
 
 import styles from "./NewTodo.module.scss";
 
@@ -42,11 +43,11 @@ const NewTodo: React.FC<Prop> = ({onAddTodo}) => {
         className={styles.new_todo__input}
         ref={inputContentRef}
         type="text"
-        placeholder="Content"
+        placeholder="Let's get some work done!"
       />
-      <button className={styles.new_todo__button} type="submit">
+      <Button size="large" variant="outlined" type="submit">
         Add
-      </button>
+      </Button>
     </form>
   );
 };
