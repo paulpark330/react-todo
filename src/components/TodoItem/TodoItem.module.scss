@@ -20,11 +20,15 @@
   transition: 0.2s ease-in-out;
   color: black;
   text-align: start;
+  word-break: break-word;
   max-width: 450px;
   line-height: 1.2;
   &.complete {
     color: #389a53;
     text-decoration: line-through;
+  }
+  @media screen and (max-width: 500px) {
+    max-width: 250px;
   }
 }
 
