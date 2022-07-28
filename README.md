@@ -1,6 +1,6 @@
 # React Todo made with React Typescript and Redux
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Live Website: [https://react-todo-54f9e.web.app/](https://react-todo-54f9e.web.app/)
 
 ## Available Scripts
 
