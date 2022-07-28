@@ -19,7 +19,6 @@ const todoSlice = createSlice({
     },
     addTodo(state, action: PayloadAction<Todo>) {
       const newTodo = action.payload;
-      console.log("newTodo", newTodo);
       state.items.push({
         id: newTodo.id,
         content: newTodo.content,

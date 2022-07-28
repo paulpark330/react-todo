@@ -1,11 +1,10 @@
 import { useRef, useId } from "react";
 import { useAppDispatch } from "../../hooks/hooks";
-import Todo from "../../models/todo";
 import { addTodo } from "../../store/todo-slice";
 
 import styles from "./NewTodo.module.scss";
 
-const NewTodo: React.FC<{}> = (props) => {
+const NewTodo: React.FC = () => {
   const inputContentRef = useRef<HTMLInputElement>(null);
   const id = useId();
   const dispatch = useAppDispatch();
@@ -13,14 +12,15 @@ const NewTodo: React.FC<{}> = (props) => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (inputContentRef.current?.value === "") {
-      alert("Please fill in all fields");
+    if (inputContentRef.current?.value.trim() === "") {
       return;
     }
 
     const content = inputContentRef.current!.value;
 
-    dispatch(addTodo({ id: `${id}${uniqueID()}`, content, completed: false }));
+    const UID = `${id}${uniqueID()}`;
+
+    dispatch(addTodo({ id: UID, content, completed: false }));
 
     inputContentRef.current!.value = "";
     inputContentRef.current?.focus();

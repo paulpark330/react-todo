@@ -6,11 +6,12 @@
   min-height: 50px;
   color: black;
   padding: 15px;
+  font-size: 18px;
   background-color: #fafafa;
   transition: 0.2s ease-in-out;
   border-bottom: 2px solid rgba(63, 140, 255, 0.5);
   &.complete {
-    background-color: #c2fad2;
+    background-color: #d3ffdf;
   }
 }
 
@@ -18,8 +19,11 @@
   transition: 0.2s ease-in-out;
   color: black;
   user-select: none;
+  text-align: start;
+  max-width: 450px;
+  line-height: 1.2;
   &.complete {
-    color: #4dd272;
+    color: #389a53;
     text-decoration: line-through;
   }
 }

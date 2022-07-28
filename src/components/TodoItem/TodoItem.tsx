@@ -1,45 +1,54 @@
 import { IonIcon } from "@ionic/react";
 import { checkmark, trashBinOutline } from "ionicons/icons";
-import React, { useEffect, useState } from "react";
+import { forwardRef, useEffect, useState } from "react";
 import { useAppDispatch } from "../../hooks/hooks";
 import Todo from "../../models/todo";
 import { deleteTodo, updateTodo } from "../../store/todo-slice";
 import styles from "./TodoItem.module.scss";
 
-const TodoItem: React.FC<{ todo: Todo }> = (props) => {
-  const { todo } = props;
-  const [completed, setCompleted] = useState(todo.completed);
+interface Props {
+  todo: Todo;
+}
+export type Ref = HTMLDivElement;
+
+const TodoItem = forwardRef<Ref, Props>((props, ref) => {
+  const { id, content, completed } = props.todo;
+  const [isCompleted, setIsCompleted] = useState(completed);
   const dispatch = useAppDispatch();
 
-  // function to change completed status to opposite
   const toggleCompleted = () => {
-    setCompleted((prevState) => !prevState);
-  }
+    setIsCompleted((prevState) => !prevState);
+  };
 
   const handleDelete = () => {
-    dispatch(deleteTodo(todo.id))
-  }
+    dispatch(deleteTodo(id));
+  };
 
   useEffect(() => {
-    dispatch(updateTodo({id: todo.id, content: todo.content, completed}))
-  }, [completed, dispatch])
+    dispatch(updateTodo({ id: id, content: content, completed: isCompleted }));
+  }, [id, content, isCompleted, dispatch]);
 
-  const status = completed ? styles.complete : styles.incomplete;
-
+  const status = isCompleted ? styles.complete : styles.incomplete;
 
   return (
-    <div className={`${styles.todo_item_container} ${status}`}>
-      <p className={`${styles.todo_item_content} ${status}`}>{todo.content}</p>
+    <div ref={ref} className={`${styles.todo_item_container} ${status}`}>
+      <p className={`${styles.todo_item_content} ${status}`}>{content}</p>
       <div className={styles.todo_item_actions}>
-        <div onClick={toggleCompleted} className={`${styles.todo_item_icon} ${status}`}>
-          <IonIcon color={completed ? 'light' : 'primary'} icon={checkmark} />
+        <div
+          onClick={toggleCompleted}
+          className={`${styles.todo_item_icon} ${status}`}
+        >
+          <IonIcon color={isCompleted ? "light" : "primary"} icon={checkmark} />
         </div>
-        <div onClick={handleDelete} className={`${styles.todo_item_icon} ${styles.delete}`}>
+        <div
+          onClick={handleDelete}
+          className={`${styles.todo_item_icon} ${styles.delete}`}
+        >
           <IonIcon color="danger" icon={trashBinOutline} />
         </div>
       </div>
     </div>
   );
-};
+});
 
 export default TodoItem;

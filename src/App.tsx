@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "./hooks/hooks";
+import logo from './assets/focus360.svg'
 
 import styles from "./App.module.scss";
 import Todos from "./components/Todos/Todos";
@@ -15,7 +16,6 @@ const App = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    console.log('updating localstorage', todos)
     dispatch(sendTodoData(todos));
   }, [todos, dispatch]);
 
@@ -26,6 +26,7 @@ const App = () => {
   return (
     <div className={styles.app}>
       {/* <DragDropContext onDragEnd={onDragEnd}> */}
+      <img className={styles.logo} src={logo} alt="logo" />
         <Todos />
       {/* </DragDropContext> */}
     </div>

@@ -6,8 +6,6 @@
   background-color: white;
   width: 90%;
   max-width: 600px;
-  // height: 500px;
-
 }
 
 .todos_header {
@@ -22,10 +20,7 @@
 .todos_main {
   overflow-y: scroll;
   width: 100%;
-  height: 450px;
-  &::-webkit-scrollbar {
-    display: none;
-  }
+  height: 500px;
 }
 
 
