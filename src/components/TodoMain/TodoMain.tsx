@@ -2,7 +2,6 @@ import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import TodoItem from "../TodoItem/TodoItem";
 import styles from "./TodoMain.module.scss";
 
-import logo from "../../assets/focus360_color.svg";
 import { useAppSelector } from "../../hooks/hooks";
 
 const TodoMain: React.FC = () => {
@@ -46,7 +45,7 @@ const TodoMain: React.FC = () => {
   if (!todoList || todoList.length === 0) {
     renderList = (
       <div className={styles.todo_empty}>
-        <img className={styles.logo} src={logo} alt="logo" />
+        No tasks to display
       </div>
     );
   } else {

@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "./hooks/hooks";
-import logo from "./assets/focus360.svg";
 
 import styles from "./App.module.scss";
 import TodoContainer from "./components/TodoContainer/TodoContainer";
@@ -20,7 +19,6 @@ const App = () => {
 
   return (
     <div className={styles.app}>
-      <img className={styles.logo} src={logo} alt="logo" />
       <TodoContainer />
     </div>
   );
