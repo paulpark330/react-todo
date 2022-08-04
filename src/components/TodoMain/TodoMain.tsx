@@ -14,7 +14,7 @@ const TodoMain: React.FC = () => {
 
   const scrollToBottom = useCallback(() => {
     if (bottomRef.current) {
-      bottomRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      bottomRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
     }
   }, []);
 
